@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<style type="text/css">
+		.sidenav a {
+			text-decoration: none;
+			color: blue;
+			line-height: 2rem;
+			
+		
+			
+		}
+		.sidenav-info:hover{
+			background-color: #e8e8e8;
+			
+
+		}
+		
+		
+		
+		html,body {
+			height: 100%;
+			
+			
+			
+		}
+	
+
+
+	</style> 
+	
+	{% load static %}
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css"> 
+	
+	<title>{% block title %}hello{% endblock  %}</title>
+</head>
+<body>
+	<div class="container-fluid" style="min-height: 95%; ">
+		<!-- căn giữa tạo khoảng đệm trong trang wed -->
+		<div class="row">
+			<div class="col-sm-2">
+				<div style="text-align: center;">
+
+					<img src="{% static 'img/Trường.jpg' %}" class="img-fluid" style="max-height:150px">
+				</div>
+			</div>
+			<div class="col-sm-9">
+				<div style="text-align:center;">
+					<h1>Blog làm từ Python Django</h1>
+				</div>
+			</div>
+				<div class="col-sm-1">
+					{% if user.username %}
+						<p>Xin chào {{user.username}}</p>
+						<form action="{% url 'logout' %}" method="post">
+							{% csrf_token %}
+							<button type="submit">Đăng Xuất</button>
+						</form>
+					{% else %}
+					<p><a href="{% url 'register' %}">Đăng Kí</a></p>
+					<p><a href="{% url 'login' %}">Đăng Nhập</a></p>
+					{% endif %}
+
+				
+				</div>
+			</div>
+		<br>
+			<div class="row">
+				<div class="col-sm-2">
+						<div class="bs-sliderbar" style="background-color: white;">
+							<ul class="nav flex-column">
+								<div class="sidenav ">
+
+									<li class="sidenav-info">
+											<!-- <div class="sidenav"> -->
+											<a  href="/">Thông Tin Cá Nhân</a>
+											<!-- </div> -->
+										</li>
+										<li class="sidenav-info">
+											<!-- <div class="sidenav"> -->
+												<a href="{% url 'blog' %}">Bài Viết</a>
+											<!-- </div> -->
+										</li>
+										<li class="sidenav-info">
+											<!-- <div class="sidenav"> -->
+												<a href="{% url 'contact' %}">Liên Hệ</a>
+											<!-- </div> -->
+										</li>
+								</div>
+								</ul>
+							
+					</div>
+					
+					
+				</div>
+					<div class="col-sm-10">
+						<div class="container-fluid">
+							{% block content %}
+							{% endblock %}
+						</div>
+					</div>
+				
+				
+			
+		</div>
+	</div>
+	<footer>
+		<div class="container-fluid">
+			<div class="sidenav">
+
+				<a href="https://www.facebook.com/me.truong.351">Facebook</a>
+			</div>
+			<div class="sidenav">
+
+				<a href="http://www.instagram.com/truong.02.03">Instagram</a>
+			</div>
+			<div class="sidenav">
+
+				<a href="https://github.com/Truongphamdev">Github</a>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>
